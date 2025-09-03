@@ -2,8 +2,6 @@
 using namespace std;
 
 int main() { //delimiter
-    int x = 65;
-    float y;
-    char z = 'C';
-    cout << z;
+    char a = 65;
+    cout << a;
 }

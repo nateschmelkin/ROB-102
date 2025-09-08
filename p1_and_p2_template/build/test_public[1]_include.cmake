@@ -1,0 +1,5 @@
+if(EXISTS "/Users/nateschmelkin/UMich/ROB102/p1_and_p2_template/build/test_public[1]_tests.cmake")
+  include("/Users/nateschmelkin/UMich/ROB102/p1_and_p2_template/build/test_public[1]_tests.cmake")
+else()
+  add_test(test_public_NOT_BUILT test_public_NOT_BUILT)
+endif()

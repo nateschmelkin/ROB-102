@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmbot_lib.a CMakeFiles/mbot_lib.dir/mbot_lib/mbot_lib/behaviors.cpp.o CMakeFiles/mbot_lib.dir/mbot_lib/mbot_lib/controllers.cpp.o CMakeFiles/mbot_lib.dir/mbot_lib/mbot_lib/utils.cpp.o
+/usr/bin/ranlib libmbot_lib.a

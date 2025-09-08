@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsuper_mario_lib.a CMakeFiles/super_mario_lib.dir/p2_bug_navigation/1_super_mario.cpp.o
+/usr/bin/ranlib libsuper_mario_lib.a

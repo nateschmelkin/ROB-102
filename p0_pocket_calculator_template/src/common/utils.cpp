@@ -42,9 +42,10 @@ void getNumber(std::ostream& output_stream, std::istream& input_stream, float &n
 }
 
 bool getOperator(std::ostream& output_stream, std::istream& input_stream, char &operation) {
+    char last_operator = operation;
     output_stream << "Please type a math operator (one of: + - * / or q to quit): ";
     input_stream >> operation;
-    if (operation != '+' && operation != '-' && operation != '*' && operation != '/' && operation != 'q') {
+    if (operation != '+' && operation != '-' && operation != '*' && operation != '/' && operation != 'q' && operation != 'u') {
         std::cerr << "Error: specified operation (" << operation << ") not recognized\n";
         return true;
     }

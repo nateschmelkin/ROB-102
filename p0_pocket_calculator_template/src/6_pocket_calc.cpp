@@ -15,11 +15,33 @@ using namespace std;
 // *** End Student Code *** //
 
 
+
+char inverse_last_operator(char last_op) {
+    switch (last_op) {
+        case '+':
+            return '-';
+            break;
+        case '-':
+            return '+';
+            break;
+        case '*':
+            return '/';
+            break;
+        case '/':
+            return '*';
+            break;    
+        default:
+            break;
+    }
+}
+
+
 int main() {
   // Let's declare our variables!
   float my_number, my_other_number; // Calculation operands
   float result_number;
   char my_operator; // Character representing operation to perform
+  char last_operator;
   bool first_run = true; // To help get 2 numbers initially
   while (true) {
     if (first_run) {
@@ -30,12 +52,17 @@ int main() {
     if (my_operator == 'q') {
       return 0;
     }
-    getNumber(cout, cin, my_other_number);
+    if (my_operator != 'u') {
+      getNumber(cout, cin, my_other_number);
+    } else {
+      my_operator = inverse_last_operator(last_operator);
+    }
     if (performOperation(my_number, my_operator, my_other_number, result_number)) {
       return -1;
     }
     cout << my_number << " " << my_operator << " " << my_other_number << " = " << result_number << "\n";
     my_number = result_number;
+    last_operator = my_operator;
   }
 
   // *** End Student Code *** //

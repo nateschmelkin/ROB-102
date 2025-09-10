@@ -1,0 +1,8 @@
+BangBangControl.TestZero 1 0.00232767
+BangBangControl.TestNearZero 1 0.00206808
+BangBangControl.TestPositive 1 0.00197742
+BangBangControl.TestNegative 1 0.00183683
+PControl.TestZero 1 0.00184238
+PControl.TestNegative 1 0.00221208
+PControl.TestPositive 1 0.00181333
+---

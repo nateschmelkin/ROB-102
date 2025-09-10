@@ -19,20 +19,20 @@ int main(int argc, const char *argv[])
 
     // Variables to be tuned.
     float vel = 0.5;
-    float dt = 1.0;
+    float dt = .7;
     int num_square = 3;
 
     // *** Task: Write code to drive in a square three times *** //
     for (size_t i = 0; i < num_square; i++)
     {
-        robot.drive(0, vel, 0);
-        robot.sleepdt(dt);
         robot.drive(vel, 0, 0);
-        robot.sleepdt(dt);
-        robot.drive(0, -vel, 0);
-        robot.sleepdt(dt);
+        sleepFor(dt);
+        robot.drive(0, vel, 0);
+        sleepFor(dt);
         robot.drive(-vel, 0, 0);
-        robot.sleepdt(dt);
+        sleepFor(dt);
+        robot.drive(0, -vel, 0);
+        sleepFor(dt);
     }
     
 

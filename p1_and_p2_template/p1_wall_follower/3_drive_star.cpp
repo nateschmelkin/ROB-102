@@ -13,6 +13,7 @@
 
 #include <mbot_lib/utils.h>
 
+using namespace std;
 
 bool ctrl_c_pressed;
 void ctrlc(int)
@@ -26,10 +27,19 @@ int main(int argc, const char *argv[])
     signal(SIGINT, ctrlc);
     signal(SIGTERM, ctrlc);
 
+    float velo = .45;
     // Initialize the robot.
     mbot_bridge::MBot robot;
 
-    // *** Task: Drive in a five pointed star *** //
+    for (size_t i = 0; i < 5; i++)
+    {
+        float angle = (M_PI * ((4.0 * i)/ 5.0));
+        cout << angle * (180.0 / M_PI) << "\n";
+        robot.drive(rayConversionCartisean(velo, angle)[1], rayConversionCartisean(velo, angle)[0], M_PI / 36);
+        sleepFor(1.75);
+        robot.stop();
+        sleepFor(.5);
+    }
 
     // *** End student code *** //
 

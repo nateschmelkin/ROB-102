@@ -5,22 +5,30 @@
  */
 
 #include <mbot_lib/controllers.h>
+#include <cmath>
 
 
 float bangBangControl(float current, float setpoint, float scaling, float tolerance)
 {
-    // *** Task: Implement this function according to the header file *** //
+    float error = setpoint - current;
+    bool within_tolerance = fabs(error) < tolerance;
 
-    return -0.1;
+    if (within_tolerance) {
+        return 0.0;
+    } else if (error > 0) {
+        return scaling;
+    } else  {
+        return -scaling;
+    }
 
     // *** End student code *** //
 }
 
 float pControl(float current, float setpoint, float kp)
 {
-    // *** Task: Implement this function according to the header file *** //
+    float error = setpoint - current;
 
-    return -0.1;
+    return error * kp;
 
     // *** End student code *** //
 }

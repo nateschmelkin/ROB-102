@@ -23,6 +23,18 @@ int main(int argc, const char *argv[])
     int num_square = 3;
 
     // *** Task: Write code to drive in a square three times *** //
+    for (size_t i = 0; i < num_square; i++)
+    {
+        robot.drive(0, vel, 0);
+        robot.sleepdt(dt);
+        robot.drive(vel, 0, 0);
+        robot.sleepdt(dt);
+        robot.drive(0, -vel, 0);
+        robot.sleepdt(dt);
+        robot.drive(-vel, 0, 0);
+        robot.sleepdt(dt);
+    }
+    
 
     // *** End student code *** //
 

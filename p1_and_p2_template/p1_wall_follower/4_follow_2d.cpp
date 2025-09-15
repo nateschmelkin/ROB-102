@@ -10,6 +10,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 
 #include <signal.h>
 
@@ -40,6 +41,8 @@ int main(int argc, const char *argv[])
     // *** Task 1: Adjust these values appropriately ***
 
     float setpoint = 1;  // The goal distance from the wall in meters
+    float max_vel = 0.8; //m/s
+    float kP = .75
 
     // *** End student code *** //
 
@@ -52,8 +55,10 @@ int main(int argc, const char *argv[])
         float dist_to_wall = ranges[min_idx];
         float angle_to_wall = thetas[min_idx];
 
-        
+        float velo = clamp(pControl(dist_to_wall, setpoint, kP), -max_vel, max_vel);
 
+        vector<float> cart_angles = rayConversionVector(angle_to_wall) * velo;
+        robot.drive(cart_angles[1], cart_angles[0])
         // *** Task 2: Implement the 2D Follow Me controller ***
         // Hint: Look at your code from follow_1D
         // Hint: When you compute the velocity command, you might find the functions

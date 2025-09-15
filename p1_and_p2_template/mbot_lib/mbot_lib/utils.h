@@ -109,12 +109,12 @@ static int findMinNonzeroDistInSlice(const std::vector<float>& ranges, const std
 }
 
 /**
- * Converts the distance and angle into x and y cartisean coords.
+ * Converts the distance and angle into x and y cartesian coords.
  * @param  dist Distance to point
  * @param  angle Angle to point
  * @return  Vector containing {x,y}
  */
-std::vector<float> rayConversionCartisean(float dist, float angle);
+std::vector<float> rayConversionCartesian(float dist, float angle);
 
 /**
  * Converts angle to object into vector to object.

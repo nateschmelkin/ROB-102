@@ -19,7 +19,7 @@ void testCrossProduct(const std::vector<float>& v1, const std::vector<float>& v2
 }
 
 void testRayConversionCartesian(float dist, float angle, const std::vector<float>& correct_result) {
-    std::vector<float> result = rayConversionCartisean(dist, angle);
+    std::vector<float> result = rayConversionCartesian(dist, angle);
     ASSERT_EQ(result.size(), correct_result.size());
     ASSERT_FLOAT_EQ(result[0], correct_result[0]);
     ASSERT_FLOAT_EQ(result[1], correct_result[1]);

@@ -10,7 +10,7 @@
 using namespace std;
 
 
-std::vector<float> rayConversionCartisean(float dist, float angle) 
+std::vector<float> rayConversionCartesian(float dist, float angle) 
 {
     float x = dist * cos(angle);
     float y = dist * sin(angle);
@@ -69,25 +69,25 @@ int findMinNonzeroDist(const std::vector<float>& ranges)
 
 std::vector<float> vectorAdd(const std::vector<float>& v1, const std::vector<float>& v2) 
 {
-    // *** Task: Implement this function according to the header file *** //
-
-    return std::vector<float>();
+    return {v1[0] + v2[0], v1[1] + v2[1], v1[2] + v2[2]};
 
     // *** End student code *** //
 }
 
 std::vector<float> crossProduct(const std::vector<float>& v1, const std::vector<float>& v2) 
 {
-    // *** Task: Implement this function according to the header file *** //
-
-    return std::vector<float>();
+    return {v1[1] * v2[2] - v1[2] * v2[1], v1[2] * v2[0] - v1[0] * v2[2], v1[0] * v2[1] - v1[1] * v2[0]};
 
     // *** End student code *** //
 }
 
 void transformVector2D(std::vector<float>& xy, float theta) 
 {
-    // *** Task: Implement this function according to the header file *** //
+    //Apply the 2D rotation matrix
 
+    float x_prime = xy[0] * cos(theta) - xy[1] * sin(theta);
+    float y_prime = xy[0] * sin(theta) - xy[1] * cos(theta);
+
+    xy = {x_prime, y_prime};
     // *** End student code *** //
 }

@@ -35,7 +35,7 @@ int main(int argc, const char *argv[])
     {
         float angle = (M_PI * ((4.0 * i)/ 5.0));
         cout << angle * (180.0 / M_PI) << "\n";
-        robot.drive(rayConversionCartisean(velo, angle)[1], rayConversionCartisean(velo, angle)[0], M_PI / 36);
+        robot.drive(rayConversionCartesian(velo, angle)[1], rayConversionCartesian(velo, angle)[0], M_PI / 36);
         sleepFor(1.75);
         robot.stop();
         sleepFor(.5);

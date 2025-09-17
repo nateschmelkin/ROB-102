@@ -55,10 +55,18 @@ int main(int argc, const char *argv[])
         float dist_to_wall = ranges[min_idx];
         float angle_to_wall = thetas[min_idx];
 
-        float velo = clamp(pControl(dist_to_wall, setpoint, kP), -max_vel, max_vel);
+        float velo = pControl(dist_to_wall, setpoint, kP)
 
-        vector<float> cart_angles = rayConversionVector(angle_to_wall) * velo;
-        robot.drive(cart_angles[1], cart_angles[0])
+        if (fabs(velo * max_vel) > 1) {
+            velo = max_vel;
+            if (velo < 0) {
+                velo *= -1;
+            }
+
+        }
+        vector<float> cart_velo_angles = rayConversionCartesian(velo, angle_to_wall);
+
+        robot.drive(cart_velo_angles[0], cart_velo_angles[1], 0)
         // *** Task 2: Implement the 2D Follow Me controller ***
         // Hint: Look at your code from follow_1D
         // Hint: When you compute the velocity command, you might find the functions

@@ -15,6 +15,8 @@
 #include <mbot_lib/controllers.h>
 #include <mbot_lib/utils.h>
 
+using namespace std;
+
 
 bool ctrl_c_pressed;
 void ctrlc(int)
@@ -38,6 +40,11 @@ int main(int argc, const char *argv[])
 
         // *** Task: Implement wall following *** //
 
+        robot.readLidarScan(ranges, thetas);
+
+        vector<float> velo_command = computeWallFollowerCommand(ranges, thetas, 0.2, 1, 0.6);
+
+        robot.drive(velo_command[0], velo_command[1], velo_command[2]);
         // *** End student code *** //
 
         if (ctrl_c_pressed) break;

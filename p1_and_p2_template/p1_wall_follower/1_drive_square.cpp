@@ -19,7 +19,7 @@ int main(int argc, const char *argv[])
 
     // Variables to be tuned.
     float vel = 0.5;
-    float dt = .7;
+    float dt = 1.5;
     int num_square = 3;
 
     // *** Task: Write code to drive in a square three times *** //

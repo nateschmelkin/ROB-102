@@ -19,6 +19,8 @@
 #include <mbot_lib/controllers.h>
 #include <mbot_lib/utils.h>
 
+using namespace std;
+
 
 bool ctrl_c_pressed;
 void ctrlc(int)
@@ -40,9 +42,9 @@ int main(int argc, const char *argv[])
 
     // *** Task 1: Adjust these values appropriately ***
 
-    float setpoint = 1;  // The goal distance from the wall in meters
+    float setpoint = .3;  // The goal distance from the wall in meters
     float max_vel = 0.8; //m/s
-    float kP = .75
+    float kP = 1;
 
     // *** End student code *** //
 
@@ -55,18 +57,19 @@ int main(int argc, const char *argv[])
         float dist_to_wall = ranges[min_idx];
         float angle_to_wall = thetas[min_idx];
 
-        float velo = pControl(dist_to_wall, setpoint, kP)
+        float velo = -pControl(dist_to_wall, setpoint, kP);
 
-        if (fabs(velo * max_vel) > 1) {
+        if (fabs(velo) > max_vel) {
             velo = max_vel;
             if (velo < 0) {
                 velo *= -1;
             }
 
         }
+
         vector<float> cart_velo_angles = rayConversionCartesian(velo, angle_to_wall);
 
-        robot.drive(cart_velo_angles[0], cart_velo_angles[1], 0)
+        robot.drive(cart_velo_angles[0], cart_velo_angles[1], 0);
         // *** Task 2: Implement the 2D Follow Me controller ***
         // Hint: Look at your code from follow_1D
         // Hint: When you compute the velocity command, you might find the functions

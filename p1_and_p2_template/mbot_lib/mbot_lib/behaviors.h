@@ -17,11 +17,14 @@
  * Computes a drive command that will make the robot follow a wall. 
  * @param  ranges Vector of ray ranges.
  * @param  thetas Vector of ray angles.
+ * @param  setpoint The goal distance from the wall in meters.
+ * @param  kP The proportional gain for the controller.
+ * @param  max_velo The maximum velocity the robot should drive at in m/s.
  * @return  The drive command as a (vx, vy, wtheta) vector. 
  *
  * NOTE: This function is not unit tested, it is simply meant to help you structure your code.
  */
-std::vector<float> computeWallFollowerCommand(const std::vector<float>& ranges, const std::vector<float>& thetas);
+std::vector<float> computeWallFollowerCommand(const std::vector<float>& ranges, const std::vector<float>& thetas, float setpoint, float kP, float max_velo);
 
 /**
  * Computes a drive command that will make the robot drive towards a goal pose.

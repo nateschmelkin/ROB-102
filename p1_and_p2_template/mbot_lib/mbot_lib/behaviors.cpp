@@ -32,11 +32,30 @@ std::vector<float> computeWallFollowerCommand(const std::vector<float>& ranges, 
     // *** End student code *** //
 }
 
-std::vector<float> computeDriveToPoseCommand(const std::vector<float>& goal, const std::vector<float>& pose)
+std::vector<float> computeDriveToPoseCommand(const std::vector<float>& goal, const std::vector<float>& pose, const vector<float> kP, float max_velo)
 {   
-    // *** Task: Implement this function according to the header file *** //
+    vector<float> output_velos(3, 0);
+    vector<float> errors = {goal[0] - pose[0], goal[1] - pose[1], goal[2] - pose[2]};
 
-    return std::vector<float>();
+    output_velos = {errors[0] * kP[0], errors[1] * kP[1], errors[2] * kP[2]};
+
+    vector<float> output_xy = {output_velos[0], output_velos[1]};
+    transformVector2D(output_xy, pose[2]);
+    output_velos[0] = output_xy[0];
+    output_velos[1] = output_xy[1];
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (fabs(output_velos[i]) > max_velo) {
+            output_velos[i] = max_velo;
+            if (max_velo < 0) {
+                output_velos[i] *= -1;
+            }
+    }
+    }
+    
+    // *** Task: Implement this function according to the header file *** //
+    return output_velos;
 
     // *** End student code *** //
 }

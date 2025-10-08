@@ -85,8 +85,8 @@ void transformVector2D(std::vector<float>& xy, float theta)
 {
     //Apply the 2D rotation matrix
 
-    float x_prime = xy[0] * cos(theta) - xy[1] * sin(theta);
-    float y_prime = xy[0] * sin(theta) - xy[1] * cos(theta);
+    float x_prime = xy[0] * cos(theta) + xy[1] * sin(theta);
+    float y_prime = -xy[0] * sin(theta) + xy[1] * cos(theta);
 
     xy = {x_prime, y_prime};
     // *** End student code *** //

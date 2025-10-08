@@ -5,29 +5,36 @@
  */
 
 #include <mbot_lib/behaviors.h>
+#include <cmath>
 
 using namespace std;
 
 
 std::vector<float> computeWallFollowerCommand(const std::vector<float>& ranges, const std::vector<float>& thetas, float setpoint, float kP, float max_velo)
 {
-    float min_idx = findMinNonzeroDist(ranges);
+    int min_idx = findMinNonzeroDist(ranges);
+    if (min_idx < 0 || min_idx >= (int)ranges.size()) {
+        return {0.f, 0.f, 0.f}; // no data → stop
+    }
     float dist_to_wall = ranges[min_idx];
     float angle_to_wall = thetas[min_idx];
 
-    float velo = max_velo - pControl(dist_to_wall, setpoint, kP);
+    vector<float> normal = rayConversionCartesian(1.0, angle_to_wall);
+    vector<float> tangent = crossProduct(normal, {0, 0, 1});
 
-    if (fabs(velo) > max_velo) {
-        velo = max_velo;
-        if (max_velo < 0) {
-            max_velo *= -1;
-        }
+    float velo_tang = max_velo;
+    float velo_normal = -pControl(dist_to_wall, setpoint, kP);
+
+    float vx = velo_tang * tangent[0] + velo_normal * normal[0];
+    float vy = velo_tang * tangent[1] + velo_normal * normal[1];
+
+    float hypo = hypot(vx, vy);
+    float vmax = fabs(max_velo);
+    if (hypo > vmax && hypo > 0) {
+        float scale = vmax/hypo;
+        vx *= scale; vy *= scale;
     }
-    vector<float> cartesian = rayConversionCartesian(velo, angle_to_wall);
-
-    vector<float> velo_vector = crossProduct(cartesian, {0, 0, 1});
-    
-    return velo_vector;
+    return {vx, vy, 0.0};
 
     // *** End student code *** //
 }
@@ -44,14 +51,11 @@ std::vector<float> computeDriveToPoseCommand(const std::vector<float>& goal, con
     output_velos[0] = output_xy[0];
     output_velos[1] = output_xy[1];
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 2; i++)
     {
         if (fabs(output_velos[i]) > max_velo) {
-            output_velos[i] = max_velo;
-            if (max_velo < 0) {
-                output_velos[i] *= -1;
-            }
-    }
+            output_velos[i] = copysign(max_velo, output_velos[i]);
+        }
     }
     
     // *** Task: Implement this function according to the header file *** //
@@ -65,7 +69,14 @@ bool isGoalAngleObstructed(const std::vector<float>& goal, const std::vector<flo
 {
     // *** Task: Implement this function according to the header file *** //
 
-    return false;
+    float dx = goal[0] - pose[0];
+    float dy = goal[1] - pose[1];
+    // float dist_to_goal = sqrt(dx * dx + dy * dy);
+    float target_angle = normalizeAngle(atan2(dy, dx) - pose[2]);
 
+    int idx = findMinNonzeroDistInSlice(ranges, thetas, target_angle, M_PI/6);
+    if (idx == -1) return false;
+    
+    return ranges[idx] <= .3;
     // *** End student code *** //
 }

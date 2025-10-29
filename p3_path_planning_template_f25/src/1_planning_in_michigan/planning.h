@@ -16,11 +16,11 @@
  */
 struct Node
 {
-    std::string city;
-    
-    // *** Task: Add variables necessary for running your search algorithms *** //
 
-    // *** End student code *** //
+    std::string city;
+    // *** Task: Add variables necessary for running your search algorithms *** //
+    // BEGIN STUDENT CODE
+    //END STUDENT CODE
 };
 
 /**

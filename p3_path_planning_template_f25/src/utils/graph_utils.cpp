@@ -79,9 +79,18 @@ std::string mapAsString(GridGraph& graph)
 
 void initGraph(GridGraph& graph)
 {
-    // *** Task: Initialize any variables YOU added to the GridGraph *** //
+    /**
+     * TODO: (P3): Initialize your graph nodes.
+     *
+     * When this function is called, the graph will have loaded the members
+     * which store the properties of the graph, like width, height, and cell
+     * odds values. You should use this information to initialize your added
+     * values, like the distances and the nodes.
+     */
 
-    // *** End student code *** //
+    //BEGIN STUDENT CODE
+    //END STUDENT CODE
+    return;
 }
 
 
@@ -141,28 +150,22 @@ bool isCellOccupied(int i, int j, const GridGraph& graph)
 
 std::vector<int> findNeighbors(int idx, const GridGraph& graph)
 {
-    // *** Task: Implement this function *** //
+    std::vector<int> neighbors;
 
-    /**
-     * NOTE: Be sure the neighbors are returned in the following order:
+     /**
+     * TODO: (P3): Return a list of the indices of all the neighbors of the node
+     * at index idx. You should not include any cells that are outside of the
+     * bounds of the graph.
      * 
-     * -1 in i direction, -1 in j direction
-     * -1 in i direction, +0 in j direction
-     * -1 in i direction, +1 in j direction
-     * +0 in i direction, -1 in j direction
-     * +0 in i direction, +0 in j direction
-     * +0 in i direction, +1 in j direction
-     * +1 in i direction, -1 in j direction 
-     * +1 in i direction, +0 in j direction
-     * +1 in i direction, +1 in j direction
-     * 
-     * This will be necessary to pass the test cases.
+     * You should search in the order of bottom left and go clockwise. Including diagonals 
+     *
+     * HINT: The functions idxToCell(), cellToIdx(), and isCellInBounds() might
+     * come in handy.
      */
 
-    std::vector<int> neighbors = std::vector<int>();
+    //BEGIN STUDENT CODE
+    //END STUDENT CODE
     return neighbors;
-
-    // *** End student code *** //
 }   
 
 
@@ -211,21 +214,29 @@ bool checkCollision(int idx, const GridGraph& graph)
 
 int getParent(int idx, const GridGraph& graph)
 {
-    // *** Task: Implement this function *** //
+     /**
+     * TODO: (P3): Return the parent of the node at idx.
+     */
     
-    return 0;
+    //BEGIN STUDENT CODE
+    //END STUDENT CODE
 
-    // *** End student code *** //
+    //replace this with the proper code
+    return -1;
 }
 
 
 float getScore(int idx, const GridGraph& graph)
 {
-    // *** Task: Implement this function if completing the A* extension *** //
-    
-    return 0.0;
+    /**
+     * TODO: (P3 advanced extension): Return the score of the node at idx.
+     */
 
-    // *** End student code *** //
+    // BEGIN STUDENT CODE
+    // END STUDENT CODE
+    
+    //replace this with the proper code
+    return HIGH;
 }
 
 

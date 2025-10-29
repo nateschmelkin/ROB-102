@@ -31,6 +31,7 @@
  * vector.
 */
 
+// *** Task: Implement this function if completing the advanced extensions *** //
 std::vector<Cell> depthFirstSearch(GridGraph &graph, const Cell &start, const Cell &goal)
 {
     std::vector<Cell> path; // The final path should be placed here.
@@ -39,9 +40,8 @@ std::vector<Cell> depthFirstSearch(GridGraph &graph, const Cell &start, const Ce
 
     int start_idx = cellToIdx(start.i, start.j, graph);
 
-    // *** Task: Implement this function if completing the advanced extensions *** //
-
-    // *** End student code *** //
+    /* BEGIN STUDENT CODE. */
+    /* END STUDENT CODE. */
 
     return path;
 }
@@ -54,13 +54,13 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
 
     int start_idx = cellToIdx(start.i, start.j, graph);
 
-    // *** Task: Implement this function *** //
-
-    // *** End student code *** //
+    /* BEGIN STUDENT CODE. */
+    /* END STUDENT CODE. */
 
     return path;
 }
 
+// *** Task: Implement this function if completing the advanced extensions *** //
 std::vector<Cell> iterativeDeepeningSearch(GridGraph &graph, const Cell &start, const Cell &goal)
 {
     std::vector<Cell> path; // The final path should be placed here.
@@ -69,13 +69,13 @@ std::vector<Cell> iterativeDeepeningSearch(GridGraph &graph, const Cell &start, 
 
     int start_idx = cellToIdx(start.i, start.j, graph);
 
-    // *** Task: Implement this function if completing the advanced extensions *** //
-
-    // *** End student code *** //
+    /* BEGIN STUDENT CODE. */
+    /* END STUDENT CODE. */
 
     return path;
 }
 
+// *** Task: Implement this function if completing the advanced extensions *** //
 std::vector<Cell> aStarSearch(GridGraph &graph, const Cell &start, const Cell &goal)
 {
     std::vector<Cell> path; // The final path should be placed here.
@@ -84,9 +84,8 @@ std::vector<Cell> aStarSearch(GridGraph &graph, const Cell &start, const Cell &g
 
     int start_idx = cellToIdx(start.i, start.j, graph);
 
-    // *** Task: Implement this function if completing the advanced extensions *** //
-
-    // *** End student code *** //
+    /* BEGIN STUDENT CODE. */
+    /* END STUDENT CODE. */
 
     return path;
 }

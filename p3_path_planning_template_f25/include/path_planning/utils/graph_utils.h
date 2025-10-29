@@ -22,8 +22,8 @@ struct Cell
 struct CellNode
 {
     // *** Task: Add variables necessary for running your search algorithms *** //
-
-    // *** End student code *** //
+    // *** BEGIN STUDENT CODE *** //
+    // *** END STUDENT CODE *** //
 };
 
 /**
@@ -52,10 +52,10 @@ struct GridGraph
     std::vector<float> obstacle_distances;  // The distance from each cell to the nearest obstacle.
 
     std::vector<Cell> visited_cells;        // A list of visited cells. Used for visualization.
-
-    // *** Task: Add any variable(s) necessary to associate CellNodes with each Cell in the GridGraph *** //
-
-    // *** End student code *** //
+    
+    /** Add anything here needed to represent individual nodes  */
+    // BEGIN STUDENT CODE
+    // END STUDENT CODE
 };
 
 

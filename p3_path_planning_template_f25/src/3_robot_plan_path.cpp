@@ -25,12 +25,17 @@ int main(int argc, char const *argv[])
     {
         goal_x = std::stof(argv[2]);
         goal_y = std::stof(argv[3]);
+    } else {
+        std::cout << "Input goal x: \n";
+        std::cin >> goal_x;
+        std::cout << "Input goal y: \n";
+        std::cin >> goal_y;
     }
 
     std::string map_file = argv[1];
     GridGraph graph;
     loadFromFile(map_file, graph);
-    distanceTransformManhattan(graph);
+    //distanceTransformManhattan(graph);
     graph.collision_radius = 0.25;
 
     Cell goal = posToCell(goal_x, goal_y, graph);
@@ -42,8 +47,8 @@ int main(int argc, char const *argv[])
 
     Cell start = posToCell(pose[0], pose[1], graph);
 
-    // std::vector<Cell> path = breadthFirstSearch(graph, start, goal);
-    std::vector<Cell> path = aStarSearch(graph, start, goal);
+    std::vector<Cell> path = breadthFirstSearch(graph, start, goal);
+    //std::vector<Cell> path = aStarSearch(graph, start, goal);
     std::cout << "Found path!\n";
     robot.drivePath(cellsToPoses(path, graph));
 

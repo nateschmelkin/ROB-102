@@ -38,23 +38,34 @@ std::vector<int> tracePath(int n, Graph& g) {
     return path;
 };
 
+// *** Task: Implement this function *** //
 std::vector<int> getNeighbors(int n, Graph& g)
 {
-    return g.edges[n];
+    // BEGIN STUDENT CODE
+    // END STUDENT CODE
+
+    //replace this with your code
+    return {0,0,0};
 }
 
+// *** Task: Implement this function *** //
 std::vector<float> getEdgeCosts(int n, Graph& g)
 {
-    return g.edge_costs[n];
+    // BEGIN STUDENT CODE
+    // END STUDENT CODE
+
+    //replace this with your code
+    return {0,0,0,0};
 }
 
+// *** Task: Implement this function *** //
 int getParent(int n, Graph& g)
 {
-    // *** Task: Implement this function *** //
+    // BEGIN STUDENT CODE
+    // END STUDENT CODE
 
+    //replace this with your code
     return -1;
-
-    // *** End student code *** //
 }
 
 void initGraph(Graph& g)
@@ -68,6 +79,7 @@ void initGraph(Graph& g)
     }
 }
 
+// *** Task: Implement this function *** //
 std::vector<int> bfs(int start, int goal, Graph& g)
 {
     initGraph(g);
@@ -75,13 +87,12 @@ std::vector<int> bfs(int start, int goal, Graph& g)
 
     std::queue<int> visit_queue;
 
-    // *** Task: Implement this function *** //
-
-    // *** End student code *** //
-
+    // BEGIN STUDENT CODE
+    // END STUDENT CODE
     return path;
 }
 
+// *** Task: Implement this function if completing the advanced extension *** //
 std::vector<int> dfs(int start, int goal, Graph& g)
 {
     initGraph(g);
@@ -89,9 +100,7 @@ std::vector<int> dfs(int start, int goal, Graph& g)
 
     std::stack<int> visit_stack;
 
-    // *** Task: Implement this function if completing the advanced extension *** //
-
-    // *** End student code *** //
-
+    // BEGIN STUDENT CODE
+    // END STUDENT CODE
     return path;
 }

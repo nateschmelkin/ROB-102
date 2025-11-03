@@ -11,15 +11,26 @@
 
 #define HIGH 1e6
 
+using namespace std;
+
 /**
  * Node struct to store information necessary for search algorithm implementation.
  */
 struct Node
 {
+    Node() :
+        city(""),
+        cost(HIGH),
+        parent(-1),
+        visited(false)
+    {}
 
     std::string city;
     // *** Task: Add variables necessary for running your search algorithms *** //
     // BEGIN STUDENT CODE
+    float cost;
+    int parent;
+    bool visited;
     //END STUDENT CODE
 };
 

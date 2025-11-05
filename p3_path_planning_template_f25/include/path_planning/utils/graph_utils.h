@@ -23,6 +23,21 @@ struct CellNode
 {
     // *** Task: Add variables necessary for running your search algorithms *** //
     // *** BEGIN STUDENT CODE *** //
+    CellNode() :
+        i(-1),
+        j(-1),
+        cost(HIGH),
+        parent(-1),
+        visited(false)
+    {}
+
+    int i;
+    int j;
+    // *** Task: Add variables necessary for running your search algorithms *** //
+    // BEGIN STUDENT CODE
+    float cost;
+    int parent;
+    bool visited;
     // *** END STUDENT CODE *** //
 };
 
@@ -54,6 +69,7 @@ struct GridGraph
     std::vector<Cell> visited_cells;        // A list of visited cells. Used for visualization.
     
     /** Add anything here needed to represent individual nodes  */
+    std::vector<CellNode> cell_nodes;
     // BEGIN STUDENT CODE
     // END STUDENT CODE
 };

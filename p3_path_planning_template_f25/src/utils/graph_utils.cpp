@@ -7,6 +7,8 @@
 #include <path_planning/utils/math_helpers.h>
 #include <path_planning/utils/graph_utils.h>
 
+using namespace std;
+
 
 bool isLoaded(const GridGraph& graph)
 {
@@ -89,6 +91,21 @@ void initGraph(GridGraph& graph)
      */
 
     //BEGIN STUDENT CODE
+    vector<CellNode> cell_nodes;
+    for (int j = 0; j < graph.height; j++)
+    {
+        for (int i = 0; i < graph.width; i++)
+        {
+            CellNode new_cell_node;
+            new_cell_node.i = i;
+            new_cell_node.j = j;
+            new_cell_node.cost = HIGH;
+            new_cell_node.parent = -1;
+            new_cell_node.visited = false;
+            cell_nodes.push_back(new_cell_node);
+        }
+    }
+    graph.cell_nodes = cell_nodes;
     //END STUDENT CODE
     return;
 }
@@ -164,6 +181,19 @@ std::vector<int> findNeighbors(int idx, const GridGraph& graph)
      */
 
     //BEGIN STUDENT CODE
+    Cell home_cell = idxToCell(idx, graph);
+    int start_i = home_cell.i;
+    int start_j = home_cell.j;
+    vector<int> i_change = {-1, -1, -1, 0, 0, 1, 1, 1};
+    vector<int> j_change = {-1, 0, 1, -1, 1, -1, 0, 1};
+    for (int k = 0; k < 8; k++)
+    {
+        int i = start_i + i_change[k];
+        int j = start_j + j_change[k];
+        if (isCellInBounds(i, j, graph)) {
+            neighbors.push_back(cellToIdx(i, j, graph));
+        }
+    }
     //END STUDENT CODE
     return neighbors;
 }   
@@ -222,7 +252,7 @@ int getParent(int idx, const GridGraph& graph)
     //END STUDENT CODE
 
     //replace this with the proper code
-    return -1;
+    return graph.cell_nodes[idx].parent;
 }
 
 

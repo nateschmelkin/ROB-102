@@ -87,9 +87,12 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
             CellNode& nbr = graph.cell_nodes[nbr_idx];
             // float edge_cost = costs[j];
             float edge_cost = graph.meters_per_cell;
+            if (abs(nbr.i - current_node.i) > 0 && abs(nbr.j - current_node.j) > 0) {
+                edge_cost *= 1.01;
+            }
 
             // cout << "Current neighbor: " << nbr.i << " | " << nbr.j << endl;
-            if(current_node.cost + edge_cost < nbr.cost && !isIdxOccupied(nbr_idx, graph)) {
+            if(current_node.cost + edge_cost < nbr.cost && !isIdxOccupied(nbr_idx, graph) && !checkCollision(nbr_idx, graph)) {
                 nbr.cost = current_node.cost + edge_cost;
                 nbr.parent = current_node_index;
                 visit_queue.push(nbr_idx);

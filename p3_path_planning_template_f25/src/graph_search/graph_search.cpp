@@ -61,6 +61,7 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
     graph.cell_nodes[start_idx].cost = 0;
     graph.cell_nodes[start_idx].visited = true;
 
+    bool goal_reached = false;
     while (!visit_queue.empty())
     {
         // Define current node
@@ -71,6 +72,7 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
 
         // Check if current node is the goal
         if (current_node.i == goal.i && current_node.j == goal.j) {
+            goal_reached = true;
             break;
         }
 
@@ -79,7 +81,7 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
 
         for (int j = 0; j < nbrs.size(); j++)
         {
-            float nbr_idx = nbrs[j];
+            int nbr_idx = nbrs[j];
             CellNode& nbr = graph.cell_nodes[nbr_idx];
             // float edge_cost = costs[j];
             float delta_x = nbr.i - current_node.i;
@@ -103,8 +105,21 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
         }
     }   
 
+    int goal_idx = cellToIdx(goal.i, goal.j, graph);
+    if (!goal_reached)
+    {
+        std::cerr << "WARNING: Goal was not reached during BFS search. Queue emptied." << std::endl;
+        std::cerr << "Debug: Goal cell: (" << goal.i << ", " << goal.j << "), index: " << goal_idx << std::endl;
+        std::cerr << "Debug: Goal visited: " << (graph.cell_nodes[goal_idx].visited ? "true" : "false") << std::endl;
+        std::cerr << "Debug: Goal parent: " << graph.cell_nodes[goal_idx].parent << std::endl;
+        std::cerr << "Debug: Goal cost: " << graph.cell_nodes[goal_idx].cost << std::endl;
+    }
+    else
+    {
+        std::cout << "Debug: Goal reached successfully during BFS search." << std::endl;
+    }
     
-    std::vector<Cell> path = tracePath(cellToIdx(goal.i, goal.j, graph), graph);
+    std::vector<Cell> path = tracePath(goal_idx, graph);
     return path;
 }
 

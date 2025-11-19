@@ -86,21 +86,24 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
             float nbr_idx = nbrs[j];
             CellNode& nbr = graph.cell_nodes[nbr_idx];
             // float edge_cost = costs[j];
-            float edge_cost = graph.meters_per_cell;
-            if (abs(nbr.i - current_node.i) > 0 && abs(nbr.j - current_node.j) > 0) {
-                edge_cost *= 1.01;
-            }
+            float delta_x = nbr.i - current_node.i;
+            float delta_y = nbr.j - current_node.j;
+            float edge_cost = graph.meters_per_cell * sqrt(delta_x * delta_x + delta_y * delta_y);
 
-            // cout << "Current neighbor: " << nbr.i << " | " << nbr.j << endl;
-            if(current_node.cost + edge_cost < nbr.cost && !isIdxOccupied(nbr_idx, graph) && !checkCollision(nbr_idx, graph)) {
-                nbr.cost = current_node.cost + edge_cost;
-                nbr.parent = current_node_index;
-                visit_queue.push(nbr_idx);
-                cout << "Updated neighbor parent: " << nbr.parent << endl;
-            }
+            // Check if neighbor is valid (not occupied and no collision)
+            if (!isIdxOccupied(nbr_idx, graph) && !checkCollision(nbr_idx, graph)) {
+                // Update cost and parent if we found a better path
+                if(current_node.cost + edge_cost < nbr.cost) {
+                    nbr.cost = current_node.cost + edge_cost;
+                    nbr.parent = current_node_index;
+                    cout << "Updated neighbor parent: " << nbr.parent << endl;
+                }
 
-            if (!nbr.visited) {
-                nbr.visited = true;
+                // If not visited yet, mark as visited and add to queue
+                if (!nbr.visited) {
+                    nbr.visited = true;
+                    visit_queue.push(nbr_idx);
+                }
             }
         }
     }   

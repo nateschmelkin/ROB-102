@@ -69,12 +69,8 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
 
         CellNode& current_node = graph.cell_nodes[current_node_index];
 
-        cout << "Current node i | j: " << current_node.i << " | " << current_node.j << endl;
-
         // Check if current node is the goal
         if (current_node.i == goal.i && current_node.j == goal.j) {
-            cout << current_node.i << " | " << current_node.j << " is the goal" << endl;
-            cout << current_node.parent << " is the goal's parent" << endl;
             break;
         }
 
@@ -88,7 +84,7 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
             // float edge_cost = costs[j];
             float delta_x = nbr.i - current_node.i;
             float delta_y = nbr.j - current_node.j;
-            float edge_cost = graph.meters_per_cell * sqrt(delta_x * delta_x + delta_y * delta_y);
+            float edge_cost = sqrt(delta_x * delta_x + delta_y * delta_y);
 
             // Check if neighbor is valid (not occupied and no collision)
             if (!isIdxOccupied(nbr_idx, graph) && !checkCollision(nbr_idx, graph)) {
@@ -96,7 +92,6 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
                 if(current_node.cost + edge_cost < nbr.cost) {
                     nbr.cost = current_node.cost + edge_cost;
                     nbr.parent = current_node_index;
-                    cout << "Updated neighbor parent: " << nbr.parent << endl;
                 }
 
                 // If not visited yet, mark as visited and add to queue
@@ -110,8 +105,6 @@ std::vector<Cell> breadthFirstSearch(GridGraph &graph, const Cell &start, const 
 
     
     std::vector<Cell> path = tracePath(cellToIdx(goal.i, goal.j, graph), graph);
-    cout << "Path Size: " << path.size() << endl;
-    // END STUDENT CODE
     return path;
 }
 

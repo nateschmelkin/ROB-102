@@ -28,6 +28,12 @@ class CameraHandler():
     self.picam2.configure("preview")
     self.picam2.start()
 
+    try:
+      sensor_size = self.picam2.camera_properties['PixelArraySize']
+      self.picam2.set_controls({"ScalerCrop": (0, 0, sensor_size[0], sensor_size[1])})
+    except (KeyError, AttributeError):
+      pass
+
     self.latest_img = None
     self.poster_cordinates = None
     self.count = 0

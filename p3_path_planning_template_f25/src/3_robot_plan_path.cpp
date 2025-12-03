@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
     //distanceTransformManhattan(graph);
     // Use a reasonable collision radius - the loadFromFile already set it to ROBOT_RADIUS + meters_per_cell
     // But we can adjust it if needed. Using ROBOT_RADIUS with a small safety margin.
-    graph.collision_radius = ROBOT_RADIUS + graph.meters_per_cell * 2;  // ~0.187m, more reasonable than 0.25m
+    graph.collision_radius = .1;  // ~0.187m, more reasonable than 0.25m
 
     // Print graph information
     std::cout << "Graph loaded successfully:" << std::endl;
